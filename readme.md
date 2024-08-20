@@ -1,2 +1,0 @@
-1. cgpa_calculator.py is not a part of the flask application. It is normal python code that performs the same functionality but via running the code in your ide.
-2. Run the flask app using "flask run".
