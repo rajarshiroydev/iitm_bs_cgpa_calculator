@@ -47,17 +47,17 @@
         <h1 class="text-center mb-4">IITM BS CGPA Calculator</h1>
         <form method="post">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 mt-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title text-center">Foundation Level Courses</h5>
+                            <h5 class="card-title text-center">Foundation</h5>
                             {% for subject, grade in grades.items() if subject in foundation_courses %}
                             <div class="form-group">
                                 <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject]
                                     }}
                                     credits)</label>
                                 <select class="form-control" name="{{ subject }}" id="{{ subject }}">
-                                    {% for i in range(4, 11) %}
+                                    {% for i in [4, 6, 7, 8, 9, 10] %}
                                     <option value="{{ i }}" {% if grade==i %}selected{% endif %}>{{ i }}</option>
                                     {% endfor %}
                                 </select>
@@ -67,7 +67,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4 mt-4">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title text-center">Diploma in Programming</h5>
@@ -77,7 +77,7 @@
                                     }}
                                     credits)</label>
                                 <select class="form-control" name="{{ subject }}" id="{{ subject }}">
-                                    {% for i in range(4, 11) %}
+                                    {% for i in [4, 6, 7, 8, 9, 10] %}
                                     <option value="{{ i }}" {% if grade==i %}selected{% endif %}>{{ i }}</option>
                                     {% endfor %}
                                 </select>
@@ -87,7 +87,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4 mt-4">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title text-center">Diploma in Data Science</h5>
@@ -97,7 +97,7 @@
                                     }}
                                     credits)</label>
                                 <select class="form-control" name="{{ subject }}" id="{{ subject }}">
-                                    {% for i in range(4, 11) %}
+                                    {% for i in [4, 6, 7, 8, 9, 10] %}
                                     <option value="{{ i }}" {% if grade==i %}selected{% endif %}>{{ i }}</option>
                                     {% endfor %}
                                 </select>
@@ -112,7 +112,7 @@
         </form>
 
         {% if cgpa is not none %}
-        <div class="result mt-4">
+        <div class="result mt-4 mb-4">
             <h2>Your CGPA: {{ cgpa }}</h2>
         </div>
         {% endif %}
