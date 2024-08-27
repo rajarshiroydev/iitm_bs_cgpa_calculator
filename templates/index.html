@@ -22,7 +22,7 @@
         }
 
         .result {
-            margin-top: 20px;
+            margin-bottom: 1rem;
             padding: 20px;
             background-color: #e9ecef;
             border-radius: 5px;
@@ -51,14 +51,15 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title text-center">Foundation</h5>
-                            {% for subject, grade in grades.items() if subject in foundation_courses %}
+                            {% for subject in foundation_courses %}
                             <div class="form-group">
                                 <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject]
-                                    }}
-                                    credits)</label>
+                                    }} credits)</label>
                                 <select class="form-control" name="{{ subject }}" id="{{ subject }}">
-                                    {% for i in [4, 6, 7, 8, 9, 10] %}
-                                    <option value="{{ i }}" {% if grade==i %}selected{% endif %}>{{ i }}</option>
+                                    {% for grade, value in [('S', 10), ('A', 9), ('B', 8), ('C', 7), ('D', 6), ('E', 4)]
+                                    %}
+                                    <option value="{{ grade }}" {% if grades[subject]==grade %}selected{% endif %}>{{
+                                        grade }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -71,14 +72,15 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title text-center">Diploma in Programming</h5>
-                            {% for subject, grade in grades.items() if subject in diploma_programming_courses %}
+                            {% for subject in diploma_programming_courses %}
                             <div class="form-group">
                                 <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject]
-                                    }}
-                                    credits)</label>
+                                    }} credits)</label>
                                 <select class="form-control" name="{{ subject }}" id="{{ subject }}">
-                                    {% for i in [4, 6, 7, 8, 9, 10] %}
-                                    <option value="{{ i }}" {% if grade==i %}selected{% endif %}>{{ i }}</option>
+                                    {% for grade, value in [('S', 10), ('A', 9), ('B', 8), ('C', 7), ('D', 6), ('E', 4)]
+                                    %}
+                                    <option value="{{ grade }}" {% if grades[subject]==grade %}selected{% endif %}>{{
+                                        grade }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -91,14 +93,15 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title text-center">Diploma in Data Science</h5>
-                            {% for subject, grade in grades.items() if subject in diploma_data_science_courses %}
+                            {% for subject in diploma_data_science_courses %}
                             <div class="form-group">
                                 <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject]
-                                    }}
-                                    credits)</label>
+                                    }} credits)</label>
                                 <select class="form-control" name="{{ subject }}" id="{{ subject }}">
-                                    {% for i in [4, 6, 7, 8, 9, 10] %}
-                                    <option value="{{ i }}" {% if grade==i %}selected{% endif %}>{{ i }}</option>
+                                    {% for grade, value in [('S', 10), ('A', 9), ('B', 8), ('C', 7), ('D', 6), ('E', 4)]
+                                    %}
+                                    <option value="{{ grade }}" {% if grades[subject]==grade %}selected{% endif %}>{{
+                                        grade }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -112,7 +115,7 @@
         </form>
 
         {% if cgpa is not none %}
-        <div class="result mt-4 mb-4">
+        <div class="result">
             <h2>Your CGPA: {{ cgpa }}</h2>
         </div>
         {% endif %}

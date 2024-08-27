@@ -30,6 +30,9 @@ credits = {
     "ba": 4,
 }
 
+# Grade values
+grade_values = {"S": 10, "A": 9, "B": 8, "C": 7, "D": 6, "E": 4}
+
 # Categorize courses
 foundation_courses = [
     "maths1",
@@ -70,15 +73,15 @@ total_credits = sum(credits.values())
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        grades = {subject: int(request.form.get(subject, 0)) for subject in credits}
+        grades = {subject: request.form.get(subject, "E") for subject in credits}
         cgpa = (
-            sum(credits[subject] * grades[subject] for subject in credits)
+            sum(credits[subject] * grade_values[grades[subject]] for subject in credits)
             / total_credits
         )
         return render_template(
             "index.html",
             grades=grades,
-            cgpa=cgpa,
+            cgpa=round(cgpa, 2),
             credits=credits,
             foundation_courses=foundation_courses,
             diploma_programming_courses=diploma_programming_courses,
@@ -86,10 +89,14 @@ def index():
         )
     return render_template(
         "index.html",
-        grades={subject: 0 for subject in credits},
+        grades={subject: "E" for subject in credits},
         cgpa=None,
         credits=credits,
         foundation_courses=foundation_courses,
         diploma_programming_courses=diploma_programming_courses,
         diploma_data_science_courses=diploma_data_science_courses,
     )
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
