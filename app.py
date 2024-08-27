@@ -30,6 +30,40 @@ credits = {
     "ba": 4,
 }
 
+# Categorize courses
+foundation_courses = [
+    "maths1",
+    "stats1",
+    "eng1",
+    "ct",
+    "maths2",
+    "stats2",
+    "eng2",
+    "python",
+]
+
+diploma_programming_courses = [
+    "dbms",
+    "pdsa",
+    "mad1",
+    "mad1_project",
+    "java",
+    "mad2",
+    "mad2_project",
+    "sc",
+]
+
+diploma_data_science_courses = [
+    "mlf",
+    "bdm",
+    "bdm_project",
+    "mlt",
+    "mlp",
+    "mlp_project",
+    "tds",
+    "ba",
+]
+
 total_credits = sum(credits.values())
 
 
@@ -41,13 +75,21 @@ def index():
             sum(credits[subject] * grades[subject] for subject in credits)
             / total_credits
         )
-        return render_template("index.html", grades=grades, cgpa=cgpa, credits=credits)
+        return render_template(
+            "index.html",
+            grades=grades,
+            cgpa=cgpa,
+            credits=credits,
+            foundation_courses=foundation_courses,
+            diploma_programming_courses=diploma_programming_courses,
+            diploma_data_science_courses=diploma_data_science_courses,
+        )
     return render_template(
         "index.html",
         grades={subject: 0 for subject in credits},
         cgpa=None,
         credits=credits,
+        foundation_courses=foundation_courses,
+        diploma_programming_courses=diploma_programming_courses,
+        diploma_data_science_courses=diploma_data_science_courses,
     )
-
-
-

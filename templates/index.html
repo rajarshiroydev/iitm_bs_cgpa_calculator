@@ -13,7 +13,7 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 1200px;
             margin-top: 50px;
         }
 
@@ -34,6 +34,10 @@
             font-size: 24px;
             color: #343a40;
         }
+
+        .card-columns {
+            column-count: 3;
+        }
     </style>
 </head>
 
@@ -42,21 +46,68 @@
     <div class="container">
         <h1 class="text-center mb-4">IITM BS CGPA Calculator</h1>
         <form method="post">
-            <div class="card">
-                <div class="card-body">
-                    {% for subject, grade in grades.items() %}
-                    <div class="form-group">
-                        <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject] }}
-                            credits):</label>
-                        <select class="form-control" name="{{ subject }}" id="{{ subject }}">
-                            {% for i in range(4, 11) %}
-                            <option value="{{ i }}" {% if grade==i %}selected{% endif %}>{{ i }}</option>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Foundation Level Courses</h5>
+                            {% for subject, grade in grades.items() if subject in foundation_courses %}
+                            <div class="form-group">
+                                <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject]
+                                    }}
+                                    credits)</label>
+                                <select class="form-control" name="{{ subject }}" id="{{ subject }}">
+                                    {% for i in range(4, 11) %}
+                                    <option value="{{ i }}" {% if grade==i %}selected{% endif %}>{{ i }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
                             {% endfor %}
-                        </select>
+                        </div>
                     </div>
-                    {% endfor %}
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Diploma in Programming</h5>
+                            {% for subject, grade in grades.items() if subject in diploma_programming_courses %}
+                            <div class="form-group">
+                                <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject]
+                                    }}
+                                    credits)</label>
+                                <select class="form-control" name="{{ subject }}" id="{{ subject }}">
+                                    {% for i in range(4, 11) %}
+                                    <option value="{{ i }}" {% if grade==i %}selected{% endif %}>{{ i }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Diploma in Data Science</h5>
+                            {% for subject, grade in grades.items() if subject in diploma_data_science_courses %}
+                            <div class="form-group">
+                                <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject]
+                                    }}
+                                    credits)</label>
+                                <select class="form-control" name="{{ subject }}" id="{{ subject }}">
+                                    {% for i in range(4, 11) %}
+                                    <option value="{{ i }}" {% if grade==i %}selected{% endif %}>{{ i }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
+
             <button type="submit" class="btn btn-primary btn-block mt-3 mb-3">Calculate CGPA</button>
         </form>
 
