@@ -54,7 +54,7 @@
                             {% for subject in foundation_courses %}
                             <div class="form-group">
                                 <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject]
-                                    }} credits)</label>
+                                    }} credit)</label>
                                 <select class="form-control" name="{{ subject }}" id="{{ subject }}">
                                     <option value="YTC" {% if grades[subject]=='YTC' %}selected{% endif %}>Yet to
                                         complete</option>
@@ -77,7 +77,7 @@
                             {% for subject in diploma_programming_courses %}
                             <div class="form-group">
                                 <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject]
-                                    }} credits)</label>
+                                    }} credit)</label>
                                 <select class="form-control" name="{{ subject }}" id="{{ subject }}">
                                     <option value="YTC" {% if grades[subject]=='YTC' %}selected{% endif %}>Yet to
                                         complete</option>
@@ -100,7 +100,7 @@
                             {% for subject in diploma_data_science_courses %}
                             <div class="form-group">
                                 <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject]
-                                    }} credits)</label>
+                                    }} credit)</label>
                                 <select class="form-control" name="{{ subject }}" id="{{ subject }}">
                                     <option value="YTC" {% if grades[subject]=='YTC' %}selected{% endif %}>Yet to
                                         complete</option>
