@@ -67,21 +67,28 @@ diploma_data_science_courses = [
     "ba",
 ]
 
-total_credits = sum(credits.values())
-
 
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        grades = {subject: request.form.get(subject, "E") for subject in credits}
-        cgpa = (
-            sum(credits[subject] * grade_values[grades[subject]] for subject in credits)
-            / total_credits
+        grades = {subject: request.form.get(subject, "YTC") for subject in credits}
+
+        # Calculate CGPA only for completed courses
+        completed_credits = sum(
+            credits[subject] for subject, grade in grades.items() if grade != "YTC"
         )
+        cgpa_sum = sum(
+            credits[subject] * grade_values[grade]
+            for subject, grade in grades.items()
+            if grade != "YTC"
+        )
+
+        cgpa = cgpa_sum / completed_credits if completed_credits > 0 else None
+
         return render_template(
             "index.html",
             grades=grades,
-            cgpa=round(cgpa, 2),
+            cgpa=round(cgpa, 2) if cgpa is not None else None,
             credits=credits,
             foundation_courses=foundation_courses,
             diploma_programming_courses=diploma_programming_courses,
@@ -89,7 +96,7 @@ def index():
         )
     return render_template(
         "index.html",
-        grades={subject: "E" for subject in credits},
+        grades={subject: "YTC" for subject in credits},
         cgpa=None,
         credits=credits,
         foundation_courses=foundation_courses,
