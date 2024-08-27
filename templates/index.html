@@ -72,7 +72,20 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title text-center">Diploma in Programming</h5>
-                            {% for subject in diploma_programming_courses %}
+                            {% for subject in diploma_programming_courses if not subject.endswith('_project') %}
+                            <div class="form-group">
+                                <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject]
+                                    }} credits)</label>
+                                <select class="form-control" name="{{ subject }}" id="{{ subject }}">
+                                    {% for grade, value in [('S', 10), ('A', 9), ('B', 8), ('C', 7), ('D', 6), ('E', 4)]
+                                    %}
+                                    <option value="{{ grade }}" {% if grades[subject]==grade %}selected{% endif %}>{{
+                                        grade }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            {% endfor %}
+                            {% for subject in diploma_programming_courses if subject.endswith('_project') %}
                             <div class="form-group">
                                 <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject]
                                     }} credits)</label>
@@ -93,7 +106,20 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title text-center">Diploma in Data Science</h5>
-                            {% for subject in diploma_data_science_courses %}
+                            {% for subject in diploma_data_science_courses if not subject.endswith('_project') %}
+                            <div class="form-group">
+                                <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject]
+                                    }} credits)</label>
+                                <select class="form-control" name="{{ subject }}" id="{{ subject }}">
+                                    {% for grade, value in [('S', 10), ('A', 9), ('B', 8), ('C', 7), ('D', 6), ('E', 4)]
+                                    %}
+                                    <option value="{{ grade }}" {% if grades[subject]==grade %}selected{% endif %}>{{
+                                        grade }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            {% endfor %}
+                            {% for subject in diploma_data_science_courses if subject.endswith('_project') %}
                             <div class="form-group">
                                 <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject]
                                     }} credits)</label>
