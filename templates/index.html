@@ -53,8 +53,8 @@
                             <h5 class="card-title text-center">Foundation</h5>
                             {% for subject in foundation_courses %}
                             <div class="form-group">
-                                <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject]
-                                    }} credit)</label>
+                                <label for="{{ subject }}">{{ subject.replace('_', ' ') }} ({{ credits[subject]
+                                    }} Credit)</label>
                                 <select class="form-control" name="{{ subject }}" id="{{ subject }}">
                                     <option value="YTC" {% if grades[subject]=='YTC' %}selected{% endif %}>Yet to
                                         complete</option>
@@ -76,8 +76,8 @@
                             <h5 class="card-title text-center">Diploma in Programming</h5>
                             {% for subject in diploma_programming_courses %}
                             <div class="form-group">
-                                <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject]
-                                    }} credit)</label>
+                                <label for="{{ subject }}">{{ subject.replace('_', ' ') }} ({{ credits[subject]
+                                    }} Credit)</label>
                                 <select class="form-control" name="{{ subject }}" id="{{ subject }}">
                                     <option value="YTC" {% if grades[subject]=='YTC' %}selected{% endif %}>Yet to
                                         complete</option>
@@ -99,8 +99,8 @@
                             <h5 class="card-title text-center">Diploma in Data Science</h5>
                             {% for subject in diploma_data_science_courses %}
                             <div class="form-group">
-                                <label for="{{ subject }}">{{ subject.replace('_', ' ').title() }} ({{ credits[subject]
-                                    }} credit)</label>
+                                <label for="{{ subject }}">{{ subject.replace('_', ' ') }} ({{ credits[subject]
+                                    }} Credit)</label>
                                 <select class="form-control" name="{{ subject }}" id="{{ subject }}">
                                     <option value="YTC" {% if grades[subject]=='YTC' %}selected{% endif %}>Yet to
                                         complete</option>
@@ -126,7 +126,7 @@
         </div>
         {% endif %}
 
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center mb-3">
             <div class="mx-auto">
                 <a href="https://www.linkedin.com/in/rajarshiroydev/" target="_blank">Linkedin</a>
                 <a href="https://github.com/rajarshiroydev" target="_blank">Github</a>
