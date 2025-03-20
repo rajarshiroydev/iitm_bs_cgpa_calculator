@@ -38,10 +38,80 @@
         .card-columns {
             column-count: 3;
         }
+
+        /* Add these new styles */
+        .degree-courses {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .degree-card {
+            grid-column: 1 / -1;
+        }
+
+        .degree-card .card-body {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .degree-card .card-title {
+            grid-column: 1 / -1;
+            margin-bottom: 20px;
+        }
+
+        .degree-card .form-group {
+            display: flex;
+            flex-direction: column;
+            height: 100px;
+            /* Fixed height for each form group */
+        }
+
+        .degree-card .form-group label {
+            min-height: 40px;
+            /* Fixed height for labels */
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            /* Slightly smaller font size */
+            line-height: 1.2;
+        }
+
+        .degree-card .form-control {
+            flex: 1;
+        }
+
+        @media (max-width: 992px) {
+            .degree-card .card-body {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .degree-card .card-body {
+                grid-template-columns: 1fr;
+            }
+
+            .degree-card .form-group {
+                height: auto;
+            }
+
+            .degree-card .form-group label {
+                min-height: auto;
+            }
+        }
     </style>
 </head>
 
 <body>
+
+    {% if cgpa is not none %}
+    <div class="result">
+        <h2>Your CGPA: {{ cgpa }}</h2>
+    </div>
+    {% endif %}
 
     <div class="container">
         <h1 class="text-center mb-4">IITM BS CGPA Calculator</h1>
@@ -115,16 +185,34 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-12 mt-4 degree-courses">
+                    <div class="card degree-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Degree</h5>
+                            {% for subject in degree_courses %}
+                            <div class="form-group">
+                                <label for="{{ subject }}">{{ subject.replace('_', ' ') }} ({{ credits[subject]
+                                    }} Credit)</label>
+                                <select class="form-control" name="{{ subject }}" id="{{ subject }}">
+                                    <option value="YTC" {% if grades[subject]=='YTC' %}selected{% endif %}>Yet to
+                                        complete</option>
+                                    {% for grade, value in [('S', 10), ('A', 9), ('B', 8), ('C', 7), ('D', 6), ('E', 4)]
+                                    %}
+                                    <option value="{{ grade }}" {% if grades[subject]==grade %}selected{% endif %}>{{
+                                        grade }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <button type="submit" class="btn btn-primary btn-block mt-3 mb-3">Calculate CGPA</button>
         </form>
 
-        {% if cgpa is not none %}
-        <div class="result">
-            <h2>Your CGPA: {{ cgpa }}</h2>
-        </div>
-        {% endif %}
 
         <div class="d-flex justify-content-center mb-3">
             <div class="mx-auto">

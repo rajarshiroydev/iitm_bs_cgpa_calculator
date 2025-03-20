@@ -28,6 +28,39 @@ credits = {
     "MLP Project": 2,
     "TDS": 3,
     "BA": 4,
+    "Software Engineering": 4,
+    "Software Testing": 4,
+    "AI: Search Methods for Problem Solving": 4,
+    "Deep Learning": 4,
+    "Strategies for Professional Growth": 4,
+    "Algorithmic Thinking in Bioinformatics": 4,
+    "Big Data and Biological Networks": 4,
+    "Data Visualization Design": 4,
+    "Special topics in Machine Learning (Reinforcement Learning)": 4,
+    "Speech Technology": 4,
+    "Design Thinking for Data-Driven App Development": 4,
+    "Industry 4.0": 4,
+    "Sequential Decision Making": 4,
+    "Market Research": 4,
+    "Privacy & Security in Online Social Media": 4,
+    "Introduction to Big Data": 4,
+    "Financial Forensics": 4,
+    "Linear Statistical Models": 4,
+    "Advanced Algorithms": 4,
+    "Statistical Computing": 4,
+    "Computer Systems Design": 4,
+    "Programming in C": 4,
+    "Mathematical Thinking": 4,
+    "Large Language Models": 4,
+    "Introduction to Natural Language Processing (i-NLP)": 4,
+    "Deep Learning for Computer Vision": 4,
+    "Managerial Economics": 4,
+    "Game Theory and Strategy": 4,
+    "Corporate Finance": 4,
+    "Deep Learning Practice": 4,
+    "Operating Systems": 4,
+    "Generative AI": 4,
+    "Algorithms for Data Science (ADS)": 4,
 }
 
 # Grade values
@@ -67,6 +100,44 @@ diploma_data_science_courses = [
     "BA",
 ]
 
+degree_courses = [
+    "Software Engineering",
+    "Software Testing",
+    "AI: Search Methods for Problem Solving",
+    "Deep Learning",
+    "Strategies for Professional Growth",
+    "Algorithmic Thinking in Bioinformatics",
+    "Big Data and Biological Networks",
+    "Data Visualization Design",
+    "Special topics in Machine Learning (Reinforcement Learning)",
+    "Speech Technology",
+    "Design Thinking for Data-Driven App Development",
+    "Industry 4.0",
+    "Sequential Decision Making",
+    "Market Research",
+    "Privacy & Security in Online Social Media",
+    "Introduction to Big Data",
+    "Financial Forensics",
+    "Linear Statistical Models",
+    "Advanced Algorithms",
+    "Statistical Computing",
+    "Computer Systems Design",
+    "Programming in C",
+    "Mathematical Thinking",
+    "Large Language Models",
+    "Introduction to Natural Language Processing (i-NLP)",
+    "Deep Learning for Computer Vision",
+    "Managerial Economics",
+    "Game Theory and Strategy",
+    "Corporate Finance",
+    "Deep Learning Practice",
+    "Operating Systems",
+    "Generative AI",
+    "Algorithms for Data Science (ADS)",
+]
+
+print(len(degree_courses))
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -93,6 +164,7 @@ def index():
             foundation_courses=foundation_courses,
             diploma_programming_courses=diploma_programming_courses,
             diploma_data_science_courses=diploma_data_science_courses,
+            degree_courses=degree_courses,
         )
     return render_template(
         "index.html",
@@ -102,6 +174,7 @@ def index():
         foundation_courses=foundation_courses,
         diploma_programming_courses=diploma_programming_courses,
         diploma_data_science_courses=diploma_data_science_courses,
+        degree_courses=degree_courses,
     )
 
 
