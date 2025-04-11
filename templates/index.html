@@ -70,12 +70,10 @@
 
         .degree-card .form-group label {
             min-height: 40px;
-            /* Fixed height for labels */
             display: flex;
             align-items: center;
             margin-bottom: 8px;
             font-size: 0.9rem;
-            /* Slightly smaller font size */
             line-height: 1.2;
         }
 
@@ -226,6 +224,41 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        const allSelects = document.querySelectorAll("select");
+
+        // Save all grades to localStorage
+        function saveGradesToLocalStorage() {
+            const grades = {};
+            allSelects.forEach(select => {
+                grades[select.id] = select.value;
+            });
+            localStorage.setItem("savedGrades", JSON.stringify(grades));
+        }
+
+        // Load grades from localStorage
+        function loadGradesFromLocalStorage() {
+            const saved = localStorage.getItem("savedGrades");
+            if (!saved) return;
+
+            const grades = JSON.parse(saved);
+            allSelects.forEach(select => {
+                if (grades.hasOwnProperty(select.id)) {
+                    select.value = grades[select.id];
+                }
+            });
+        }
+
+        // Attach change listeners
+        allSelects.forEach(select => {
+            select.addEventListener("change", saveGradesToLocalStorage);
+        });
+
+        // Restore on load
+        window.onload = loadGradesFromLocalStorage;
+    </script>
+
 </body>
 
 </html>
